@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 using Quiz.Supports.Extensions;
@@ -15,10 +17,15 @@ namespace Quiz.ViewModel
 
         public MainViewInteractionsVM()
         {
-            CloseClick = new DelegateCommand(() =>
-               OpenQuestionsAnimationTrigger =
-                    OtherExtensions.ReverceAnimationTriggerValue(OpenQuestionsAnimationTrigger)
-            );
+            Application.Current.MainWindow.KeyDown += (s, e) => {
+                switch (e.Key)
+                {
+                    case Key.Q:
+                        OpenQuestionsAnimationTrigger =
+                     OtherExtensions.ReverceAnimationTriggerValue(OpenQuestionsAnimationTrigger);
+                        break;
+                }
+            };
 
             SettingsIconClickCommand = new DelegateCommand(() =>
                OpenSettingsAnimationTrigger =
