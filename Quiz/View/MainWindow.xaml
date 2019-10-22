@@ -1,0 +1,140 @@
+﻿<Window x:Class="Quiz.MainWindow" x:Name="MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quiz.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:v ="clr-namespace:Quiz.View"
+        xmlns:c ="clr-namespace:Quiz.Supports.Converters"
+        xmlns:s ="clr-namespace:Quiz.Supports"
+        xmlns:a="clr-namespace:Quiz.Supports.CustomAnimations"
+        xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" >
+
+    <Window.Resources>
+        <c:ColorDarker x:Key="ColorDarker"/>
+        <c:PlayerPointsInverter x:Key="PlayerPointsInverter" />
+
+        <DataTemplate DataType="{x:Type local:PlayerDataVM}">
+            <DockPanel Margin="0,45,0,0">
+
+                <!--Player tile-->
+                <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseUp">
+                            <i:InvokeCommandAction Command="{Binding OnPlayerTileClick}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="{Binding PlayerColor}" Opacity="0.4" ShadowDepth="0" />
+                    </Border.Effect>
+
+                    <Border.Background>
+                        <SolidColorBrush Color="{Binding PlayerColor}"/>
+                    </Border.Background>
+
+                    <TextBlock FontFamily="Bebas Neue" Text="{Binding PlayerName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25pt" />
+                </Border>
+
+                <!--Points bar with points count-->
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ah:GridPropertyAnimation.AnimationValue="{Binding PlayerPointsStars}"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition>
+                            <ah:GridPropertyAnimation.AnimationValue>
+                                <MultiBinding Converter="{StaticResource PlayerPointsInverter}">
+                                    <Binding Path="PlayerPointsStars" />
+                                    <Binding Path="DataContext.PlayersPresentationData.MaxPointValue" RelativeSource="{RelativeSource AncestorType={x:Type Window}}"/>
+                                </MultiBinding>
+                            </ah:GridPropertyAnimation.AnimationValue>
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Points bar-->
+                    <Border Grid.Column="0" Margin="19,0,0,0" Height="9" CornerRadius="5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="{Binding PlayerColor}" Opacity="0.3" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+                                <GradientStop Color="{Binding PlayerColor, Converter={StaticResource ColorDarker}}"/>
+                                <GradientStop Color="{Binding PlayerColor}" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+
+                    <!--Points count text block-->
+                    <TextBlock Grid.Column="1" Text="{Binding PlayerPoints}" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               FontFamily="Gadugi" FontSize="26pt" Margin="19,0,0,0" Foreground="#707070" />
+                </Grid>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+
+    <Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="4.5*"
+                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
+                
+                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="100"  ah:GridPropertyAnimation.AnimationValue="50"
+                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
+                
+                <ColumnDefinition Width="20*" />
+                
+                <ColumnDefinition Width="0.5*" />
+
+                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*"  ah:GridPropertyAnimation.AnimationValue="25*"
+                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
+            </Grid.ColumnDefinitions>
+
+            <v:SettingsView Grid.Column="0"/>
+            <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch"/>
+            <v:QuestionView Grid.Column="4"/>
+        </Grid>
+
+        <!--<v:QuestionView Width="1127" Loaded="QuestionView_Loaded" HorizontalAlignment="Right"/>-->
+        <v:ChangeGroupPointsVeiw VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+        <DockPanel VerticalAlignment="Top">
+            <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <i:InvokeCommandAction Command="{Binding BarVM.OnMouseOverCloseButton}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <i:InvokeCommandAction Command="{Binding BarVM.OnMouseLeaveCloseButton}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding InteractionsVM.CloseClick}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <Image Source="{DynamicResource CancelIcon}" Width="25" Height="25" Margin="20" />
+            </Border>
+            <Border VerticalAlignment="Top">
+                <DockPanel>
+                    <Image Source="{DynamicResource SettingsIcon}"  Width="35" Height="35" Margin="20">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseUp">
+                                <i:InvokeCommandAction Command="{Binding InteractionsVM.SettingsIconClickCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Image>
+
+                    <TextBlock Text="Настройки" Margin="10" FontSize="20pt" VerticalAlignment="Center" Foreground="#707070" Opacity="0"/>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+        
+    </Grid>
+</Window>

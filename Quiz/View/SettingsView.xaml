@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Quiz.View.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Quiz.View"
+             xmlns:md ="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Background="#FFD5D5D5">
+   
+    <UserControl.Resources>
+        <Style x:Key="StaticButtonTemplate" TargetType="{x:Type Button}" >
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border TextBlock.Foreground="#707070"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush>
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0" Color="#BFBFBF"/>
+                                                <GradientStop Offset="8" Color="#606060"/>
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!--<Trigger Property="IsPressed" Value="true" >
+                                <Setter Property="Background" Value="{DynamicResource PressedButtonBrush}" />
+                            </Trigger>-->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="30,145,0,0">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Select " FontSize="26" FontFamily="Gadugi" Foreground="#707070" />
+
+            <TextBox Text="Com 1 " FontSize="26" FontFamily="Gadugi" Foreground="#707070" Background="{x:Null}" Margin="37,0,0,0" FlowDirection="RightToLeft" SelectionOpacity="2" />
+
+        </StackPanel>
+        <Button Style="{StaticResource StaticButtonTemplate}"  BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" Command="" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0,22,0,0">
+            <TextBlock Text="Cashe" FontSize="26" FontFamily="Gadugi" Foreground="#707070"/>
+        </Button>
+        <TextBlock Text="Players" FontSize="26" FontFamily="Gadugi" Foreground="#707070" Margin="0,22,0,0"  />
+    </StackPanel>
+</UserControl>
