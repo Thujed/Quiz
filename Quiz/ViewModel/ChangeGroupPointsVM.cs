@@ -16,10 +16,10 @@ namespace Quiz.ViewModel
         private Player _player = new Player();
 
         public ChangeGroupPointsVM() {
-            if (ChangePointViewVisibility == Visibility.Hidden)
-                return;
-
             Application.Current.MainWindow.KeyDown += (s, e) => {
+
+                if (ChangePointViewVisibility == Visibility.Hidden)
+                return;
                 switch (e.Key) {
                     case Key.Enter:
                         IncreasePoint();

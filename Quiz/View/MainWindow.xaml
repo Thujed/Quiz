@@ -114,7 +114,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <v:ChangeGroupPointsVeiw Grid.Column="1" Grid.Row="1"/>
+            <v:ChangeGroupPointsVeiw Grid.Column="1"  Grid.Row="1"/>
         </Grid>
       
 

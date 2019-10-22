@@ -72,7 +72,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\PlayersProgressBar.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Supports\Converters\PlayerPointsInverter.cs" />
     <Compile Include="Supports\Converters\ProportionalPixelsConverter.cs" />
