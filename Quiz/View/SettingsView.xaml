@@ -44,9 +44,17 @@
 
     <StackPanel Margin="30,145,0,0">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Select " FontSize="26" FontFamily="Gadugi" Foreground="#707070" />
+            <TextBlock Text="Select " FontSize="26" FontFamily="Gadugi" VerticalAlignment="Center" Foreground="#707070" />
 
-            <TextBox Text="Com 1 " FontSize="26" FontFamily="Gadugi" Foreground="#707070" Background="{x:Null}" Margin="37,0,0,0" FlowDirection="RightToLeft" SelectionOpacity="2" />
+
+
+
+            <ComboBox Margin="17,0,0,0" Foreground="#707070" FontFamily="Gadugi" FontSize="19pt" 
+                      md:HintAssist.Hint="Serial port" >
+                <ComboBoxItem>COM 1</ComboBoxItem>
+                <ComboBoxItem>COM 2</ComboBoxItem>
+                <ComboBoxItem>COM 3</ComboBoxItem>
+            </ComboBox>
 
         </StackPanel>
         <Button Style="{StaticResource StaticButtonTemplate}"  BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" Command="" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0,22,0,0">

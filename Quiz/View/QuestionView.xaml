@@ -25,7 +25,7 @@
                         <StackPanel.OpacityMask>
                             <VisualBrush Visual="{Binding ElementName=Mask}" />
                         </StackPanel.OpacityMask>
-                        <Image x:Name="Receiver" Source="C:\Users\thuje\OneDrive\Рабочий стол\Раб. Стол\Projects\Quiz\Quiz\Supports\Images\Picture2.jpg" RenderTransformOrigin="0.501,0.489" >
+                        <Image x:Name="Receiver" Source="/Quiz;component/Resources/Images/kompyuter-monitor-minimalizm.jpg" >
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>

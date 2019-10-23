@@ -33,6 +33,9 @@
     </UserControl.Resources>
     
     <Border Background="#D5D5D5" CornerRadius="40,40,0,0" d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" Visibility="{Binding ChangePointsVM.ChangePointViewVisibility}" >
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
+        </Border.Effect>
         <StackPanel>
             <TextBlock Text="Добавить/снять баллы" FontSize="26" Foreground="#707070" FontFamily="Gafugi" HorizontalAlignment="Center" Margin="0,19,0,0"/>
             <Grid Margin="30">
@@ -48,13 +51,13 @@
                     <Border.Effect>
                         <DropShadowEffect Color="{Binding ChangePointsVM}" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
                     </Border.Effect>
-                    <TextBlock Text="{Binding ChangePointsVM.PlayerName}" FontFamily="Bebas Neue" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="85"/>
+                    <TextBlock Text="{Binding ChangePointsVM.PlayerName}" FontFamily="Bebas Neue" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="70pt" SnapsToDevicePixels="True"/>
                 </Border>
                 <Border Background="#707070" HorizontalAlignment="Right" Width="1"/>
 
                 <Grid Grid.Column="1" >
                     <DockPanel Margin="10">
-                        <TextBlock Text="{Binding ChangePointsVM.PlayerPoints}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="91"/>
+                        <TextBlock Text="{Binding ChangePointsVM.PlayerPoints}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" SnapsToDevicePixels="True"/>
                         <Grid Margin="10,0,0,0">
                             <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2"/>
                             <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2" Style="{StaticResource ChangeSign}">
@@ -63,7 +66,7 @@
                                 </Border.RenderTransform>
                             </Border>
                         </Grid>
-                        <TextBox x:Name ="points" Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="91" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" />
+                        <TextBox x:Name ="points"  Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SnapsToDevicePixels="True" />
                     </DockPanel>
                 </Grid>
             </Grid>

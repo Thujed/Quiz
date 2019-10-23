@@ -25,7 +25,7 @@ namespace Quiz.ViewModel
                         IncreasePoint();
                         ChangePointViewVisibility = Visibility.Hidden;
                         break;
-                    case Key.Tab:
+                    case Key.LeftShift:
                         IsPositiveSign = !IsPositiveSign;
                         break;
                 }    

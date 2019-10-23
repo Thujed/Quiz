@@ -13,7 +13,7 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" >
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" Loaded="MainWindowView_Loaded" >
 
     <Window.Resources>
         <c:ColorDarker x:Key="ColorDarker"/>
@@ -83,7 +83,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="4.5*"
+                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="5*"
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
                 
                 <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="100"  ah:GridPropertyAnimation.AnimationValue="50"
@@ -101,22 +101,8 @@
             <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch"/>
             <v:QuestionView Grid.Column="4"/>
         </Grid>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3.7*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
-            <v:ChangeGroupPointsVeiw Grid.Column="1"  Grid.Row="1"/>
-        </Grid>
-      
+        
+        <v:ChangeGroupPointsVeiw x:Name="CHPV" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
         <DockPanel VerticalAlignment="Top">
             <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">

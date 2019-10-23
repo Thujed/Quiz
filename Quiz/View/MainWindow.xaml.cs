@@ -28,6 +28,13 @@ namespace Quiz
             MainWindowVM = new MainVM();
             DataContext = MainWindowVM;
             InitializeComponent();
+
+        }
+
+        private void MainWindowView_Loaded(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(this.CHPV.ActualWidth.ToString());
+
         }
     }
 }

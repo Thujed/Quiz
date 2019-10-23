@@ -31,9 +31,12 @@ namespace Quiz.ViewModel
                OpenSettingsAnimationTrigger =
                     OtherExtensions.ReverceAnimationTriggerValue(OpenSettingsAnimationTrigger)
             );
+
+            OpenSettingsAnimationTrigger = AnimationTriggerValue.StartReverce;
+            OpenQuestionsAnimationTrigger = AnimationTriggerValue.StartReverce;
         }
 
-        private AnimationTriggerValue _openSettingsAnimationTrigger = AnimationTriggerValue.StartReverce;
+        private AnimationTriggerValue _openSettingsAnimationTrigger;
         public AnimationTriggerValue OpenSettingsAnimationTrigger
         {
             get => _openSettingsAnimationTrigger;
@@ -47,7 +50,7 @@ namespace Quiz.ViewModel
             }
         }
 
-        private AnimationTriggerValue _openQuestionsAnimationTrigger = AnimationTriggerValue.StartReverce;
+        private AnimationTriggerValue _openQuestionsAnimationTrigger;
         public AnimationTriggerValue OpenQuestionsAnimationTrigger
         {
             get => _openQuestionsAnimationTrigger;
