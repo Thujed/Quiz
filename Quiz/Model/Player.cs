@@ -35,8 +35,5 @@ namespace Quiz.Model
                 SetProperty(ref _playerColor, value);
             }
         }
-
-        
-
     }
 }

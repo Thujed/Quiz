@@ -15,6 +15,8 @@ namespace Quiz.ViewModel
     public class MainViewInteractionsVM : BindableBase
     {
 
+        //public event Action
+
         public MainViewInteractionsVM()
         {
             Application.Current.MainWindow.KeyDown += (s, e) => {

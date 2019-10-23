@@ -25,16 +25,7 @@
                         <StackPanel.OpacityMask>
                             <VisualBrush Visual="{Binding ElementName=Mask}" />
                         </StackPanel.OpacityMask>
-                        <Image x:Name="Receiver" Source="/Quiz;component/Resources/Images/kompyuter-monitor-minimalizm.jpg" >
-                            <Image.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="2159.761"/>
-                                    <TranslateTransform X="-0.048" Y="-0.008"/>
-                                </TransformGroup>
-                            </Image.RenderTransform>
-                        </Image>
+                        <Image x:Name="Receiver" Source="/Quiz;component/Resources/Images/kompyuter-monitor-minimalizm.jpg" />
                     </StackPanel>
                 </Grid>
             </Border>

@@ -13,7 +13,7 @@ namespace Quiz.ViewModel
 {
     public class ChangeGroupPointsVM : BindableBase
     {
-        private Player _player = new Player();
+        public event Action<int> OnPlayerPointsChanged;
 
         public ChangeGroupPointsVM() {
             Application.Current.MainWindow.KeyDown += (s, e) => {
@@ -22,7 +22,8 @@ namespace Quiz.ViewModel
                 return;
                 switch (e.Key) {
                     case Key.Enter:
-                        IncreasePoint();
+                        int increasingValue = Convert.ToInt32(ScoreChangeValue);
+                        OnPlayerPointsChanged.Invoke(_isPositiveSign ? increasingValue : -increasingValue);
                         ChangePointViewVisibility = Visibility.Hidden;
                         break;
                     case Key.LeftShift:
@@ -33,11 +34,6 @@ namespace Quiz.ViewModel
             ChangePointViewVisibility = Visibility.Hidden;
             IsPositiveSign = true;
         }
-
-
-        public string PlayerName => _player.PlayerName;
-        public int PlayerPoints => _player.PlayerPoints;
-        public Color PlayerColor => _player.PlayerColor;
 
         private bool _isPositiveSign;
         public bool IsPositiveSign {
@@ -56,29 +52,5 @@ namespace Quiz.ViewModel
         }
 
         public string ScoreChangeValue { get; set; } = "1";
-        
-        public void StartChangingProcess(Player player) {
-
-            _player = player;
-            RaisePropertyChanged("PlayerName");
-            RaisePropertyChanged("PlayerPoints");
-            RaisePropertyChanged("PlayerColor");
-            _player.PropertyChanged += (s, e) => RaisePropertyChanged(e.PropertyName);
-           
-
-            ChangePointViewVisibility = Visibility.Visible;
-        }
-
-
-        public void IncreasePoint()
-        {
-            if (IsPositiveSign) {
-                int value = Convert.ToInt32(ScoreChangeValue) + _player.PlayerPoints;
-                _player.PlayerPoints = value > 60 ? 60 : value;
-            } else {
-                int value = _player.PlayerPoints - Convert.ToInt32(ScoreChangeValue);
-                _player.PlayerPoints = value < 0 ? 0 : value;
-            }
-        }
     }
 }

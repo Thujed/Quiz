@@ -14,24 +14,19 @@ namespace Quiz.ViewModel
 {
     public class PlayerDataVM : BindableBase
     {
+        public event Action<PlayerDataVM> OnPlayerSelected; 
+
         private Player _player;
-
-        private double _maxBarWidth;
-        private int _maxPointValue;
-
-        public PlayerDataVM(Player player, MainVM mainVM) {
+    
+        public PlayerDataVM(Player player) {
             
             _player = player;
             _player.PropertyChanged += (s, e) => {
                 RaisePropertyChanged(e.PropertyName);
-                if (e.PropertyName == "PlayerPoints") {
-                    UpdatePlayerPoints();
-                    RaisePropertyChanged("PlayerPointsStars");
-                }
             };
 
             this.OnPlayerTileClick = new DelegateCommand(() => {
-                mainVM.ChangePointsVM.StartChangingProcess(this._player);        
+                OnPlayerSelected.Invoke(this);
             });
         }
 
@@ -41,46 +36,8 @@ namespace Quiz.ViewModel
         public Color PlayerColor => _player.PlayerColor;
         public DelegateCommand OnPlayerTileClick { get; }
 
-        #region BarWidthSettings
-
-        /// <summary>
-        /// Trigger for bar width animation
-        /// </summary>
-        public bool BarWidthAnimationTrigger { get; private set; } = true;
-
-        /// <summary>
-        /// Max points minus player points
-        /// </summary>
-        private GridLength _invertedPlayerPointsStars;
-        public GridLength InvertedPlayerPointsStars {
-            get => _invertedPlayerPointsStars;
-            set {
-                SetProperty(ref _invertedPlayerPointsStars, value);
-                RaisePropertyChanged("BarWidthAnimationTrigger");
-            }
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Count new width of bar with points
-        /// </summary>
-        public void UpdatePlayerPoints()
-        {
-            InvertedPlayerPointsStars = new GridLength(_maxPointValue - PlayerPoints, GridUnitType.Star);
-        }
-
-        /// <summary>
-        /// Update width of bar if maximum point value changes
-        /// </summary>
-        /// <param name="value">New maximum point value</param>
-        /// <param name="tryCountWidth">If we dont need updating bar width - false</param>
-        public void UpdateMaxPointValue(int value, bool tryCountWidth = false)
-        {
-            _maxPointValue = value;
-
-            if (tryCountWidth)
-                InvertedPlayerPointsStars = new GridLength(_maxPointValue - PlayerPoints, GridUnitType.Star);
+        public void SetPlayerPoints(int newPointsValue) {
+            _player.PlayerPoints = newPointsValue;
         }
     }
 }
