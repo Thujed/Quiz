@@ -91,6 +91,7 @@
     <Compile Include="Supports\Extensions\UIExtensions.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\BasePropertyAnimation.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\GridPropertyAnimation.cs" />
+    <Compile Include="Supports\Worker\DBWorker.cs" />
     <Compile Include="ViewModel\ChangeGroupPointsVM.cs" />
     <Compile Include="ViewModel\GeneralPlayerDataVM.cs" />
     <Compile Include="ViewModel\MainViewInteractionsVM.cs" />
