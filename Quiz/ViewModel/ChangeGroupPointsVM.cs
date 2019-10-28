@@ -26,7 +26,7 @@ namespace Quiz.ViewModel
                         OnPlayerPointsChanged.Invoke(_isPositiveSign ? increasingValue : -increasingValue);
                         ChangePointViewVisibility = Visibility.Hidden;
                         break;
-                    case Key.LeftShift:
+                    case Key.OemTilde:
                         IsPositiveSign = !IsPositiveSign;
                         break;
                 }    

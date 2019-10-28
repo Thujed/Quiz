@@ -8,12 +8,13 @@
         xmlns:v ="clr-namespace:Quiz.View"
         xmlns:c ="clr-namespace:Quiz.Supports.Converters"
         xmlns:s ="clr-namespace:Quiz.Supports"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:a="clr-namespace:Quiz.Supports.CustomAnimations"
         xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
         
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" Loaded="MainWindowView_Loaded" >
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize">
 
     <Window.Resources>
         <c:ColorDarker x:Key="ColorDarker"/>
@@ -75,38 +76,42 @@
                     <TextBlock Grid.Column="1" Text="{Binding PlayerPoints}" VerticalAlignment="Center" HorizontalAlignment="Right" 
                                FontFamily="Gadugi" FontSize="26pt" Margin="19,0,0,0" Foreground="#707070" />
                 </Grid>
-            </DockPanel>
+           </DockPanel>
         </DataTemplate>
     </Window.Resources>
 
-
     <Grid>
 
+
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="107*"/>
+                <RowDefinition Height="163*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="5*"
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
-                
+
                 <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="100"  ah:GridPropertyAnimation.AnimationValue="50"
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
-                
+
                 <ColumnDefinition Width="20*" />
-                
+
                 <ColumnDefinition Width="0.5*" />
 
                 <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*"  ah:GridPropertyAnimation.AnimationValue="25*"
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
             </Grid.ColumnDefinitions>
 
-            <v:SettingsView Grid.Column="0">
-                <v:SettingsView.Effect>
+            <v:SettingsView Grid.Column="0" Grid.RowSpan="2" md:ShadowAssist.ShadowDepth="Depth3" md:ShadowAssist.ShadowEdges="Right">
+                <!--<v:SettingsView.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10"  Opacity="0.5" ShadowDepth="0" />
-                </v:SettingsView.Effect>
+                </v:SettingsView.Effect>-->
             </v:SettingsView>
-            <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch"/>
-            <v:QuestionView Grid.Column="4"/>
+            <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch" Grid.RowSpan="2"/>
+            <v:QuestionView Grid.Column="4" Grid.RowSpan="2"/>
         </Grid>
-        
+
         <v:ChangeGroupPointsVeiw x:Name="CHPV" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
         <DockPanel VerticalAlignment="Top">
@@ -134,11 +139,10 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Image>
-
                     <TextBlock Text="Настройки" Margin="10" FontSize="20pt" VerticalAlignment="Center" Foreground="#707070" Opacity="0"/>
                 </DockPanel>
             </Border>
         </DockPanel>
-        
+    
     </Grid>
 </Window>

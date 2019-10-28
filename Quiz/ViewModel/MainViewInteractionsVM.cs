@@ -66,6 +66,8 @@ namespace Quiz.ViewModel
             }
         }
 
+        
+
         public DelegateCommand SettingsIconClickCommand { get; }
         public DelegateCommand CloseClick { get; }
     }

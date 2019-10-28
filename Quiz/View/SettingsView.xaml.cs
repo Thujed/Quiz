@@ -21,12 +21,9 @@ namespace Quiz.View
     /// </summary>
     public partial class SettingsView : UserControl
     { 
-
         public SettingsView()
         {
             InitializeComponent();
         }
-
-    
     }
 }
