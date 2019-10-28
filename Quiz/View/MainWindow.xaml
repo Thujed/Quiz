@@ -22,7 +22,10 @@
         <c:IntegerToStarGridLengthConverter x:Key="IntegerToStarGridLengthConverter"/>
 
         <DataTemplate DataType="{x:Type local:PlayerDataVM}">
-            <DockPanel Margin="0,45,0,0">
+            <DockPanel Margin="0,45,0,0" ah:DoublePropertyAnimation.AnimationValue = "0.0"
+                       ah:DoublePropertyAnimation.DefaultValue = "1.0"
+                       ah:DoublePropertyAnimation.PropertyToAnimate="Opacity"
+                       ah:DoublePropertyAnimation.AnimationTrigger="{Binding Path=DataContext.PlayersPresentationData.FadeOutAnimationValue, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
 
                 <!--Player tile-->
                 <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
