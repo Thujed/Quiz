@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Quiz.Supports.Extensions;
 using Quiz.ViewModel;
 
 namespace Quiz
@@ -29,12 +30,7 @@ namespace Quiz
             DataContext = MainWindowVM;
             InitializeComponent();
 
-        }
-
-        private void MainWindowView_Loaded(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show(this.CHPV.ActualWidth.ToString());
-
+            List<TextBlock> textBlocks = this.GetAllUIElements<TextBlock>();
         }
     }
 }
