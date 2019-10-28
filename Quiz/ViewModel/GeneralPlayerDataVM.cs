@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using Quiz.Supports;
+using Quiz.Supports.PropertyAnimationHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,15 @@ namespace Quiz.ViewModel
             get => _maxPointValue;
             set {
                 SetProperty(ref _maxPointValue, value);
+            }
+        }
+
+        private AnimationTriggerValue _fadeOutAnimationValue = AnimationTriggerValue.StartReverce;
+        public AnimationTriggerValue FadeOutAnimationValue
+        {
+            get => _fadeOutAnimationValue;
+            set {
+                SetProperty(ref _fadeOutAnimationValue, value);
             }
         }
 

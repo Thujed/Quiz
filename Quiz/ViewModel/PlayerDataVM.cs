@@ -1,14 +1,11 @@
 ﻿using Quiz.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using Prism.Mvvm;
 using Prism.Commands;
 using System.Windows;
-using System.Windows.Media.Animation;
+using Quiz.Supports.PropertyAnimationHandlers;
+using Quiz.Supports.Extensions;
 
 namespace Quiz.ViewModel
 {
@@ -39,5 +36,8 @@ namespace Quiz.ViewModel
         public void SetPlayerPoints(int newPointsValue) {
             _player.PlayerPoints = newPointsValue;
         }
+
+        
+
     }
 }

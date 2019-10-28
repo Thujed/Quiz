@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quiz.ViewModel"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:v ="clr-namespace:Quiz.View"
-        xmlns:c ="clr-namespace:Quiz.Supports.Converters"
-        xmlns:s ="clr-namespace:Quiz.Supports"
+        xmlns:v="clr-namespace:Quiz.View"
+        xmlns:c="clr-namespace:Quiz.Supports.Converters"
+        xmlns:s="clr-namespace:Quiz.Supports"
         xmlns:a="clr-namespace:Quiz.Supports.CustomAnimations"
         xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
         
@@ -21,7 +21,10 @@
         <c:IntegerToStarGridLengthConverter x:Key="IntegerToStarGridLengthConverter"/>
 
         <DataTemplate DataType="{x:Type local:PlayerDataVM}">
-            <DockPanel Margin="0,45,0,0">
+            <DockPanel Margin="0,45,0,0" ah:DoublePropertyAnimation.AnimationValue = "0.0"
+                       ah:DoublePropertyAnimation.DefaultValue = "1.0"
+                       ah:DoublePropertyAnimation.PropertyToAnimate="Opacity"
+                       ah:DoublePropertyAnimation.AnimationTrigger="{Binding Path=DataContext.PlayersPresentationData.FadeOutAnimationValue, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
 
                 <!--Player tile-->
                 <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
@@ -103,7 +106,7 @@
                     <DropShadowEffect Color="Black" BlurRadius="10"  Opacity="0.5" ShadowDepth="0" />
                 </v:SettingsView.Effect>
             </v:SettingsView>
-            <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch"/>
+            <v:PlayersDataView Grid.Column="2" />
             <v:QuestionView Grid.Column="4"/>
         </Grid>
         

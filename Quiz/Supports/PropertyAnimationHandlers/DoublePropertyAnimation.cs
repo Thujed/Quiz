@@ -5,32 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
-using System.Windows.Threading;
-using Quiz.Supports.CustomAnimations;
 
 namespace Quiz.Supports.PropertyAnimationHandlers
 {
-    public class GridPropertyAnimation : BasePropertyAnimation<GridPropertyAnimation, GridLength>
+    class DoublePropertyAnimation : BasePropertyAnimation<DoublePropertyAnimation, double>
     {
-        public override Storyboard GetAnimationStoryboard(DependencyObject element, string propertyToAnimate, AnimationTriggerValue triggerValue, GridLength newValue, GridLength oldValue) {
-            GridAnimation animation = new GridAnimation() {
-                To = 
+        public override Storyboard GetAnimationStoryboard(DependencyObject element, string propertyToAnimate, AnimationTriggerValue triggerValue, double newValue, double oldValue) {
+            DoubleAnimation animation = new DoubleAnimation() {
+                To =
                     triggerValue == AnimationTriggerValue.Start || triggerValue == AnimationTriggerValue.Unset ? newValue : oldValue,
 
-                From = 
+                From =
                     triggerValue == AnimationTriggerValue.Start || triggerValue == AnimationTriggerValue.Unset ? oldValue : newValue,
 
-                Duration = 
+                Duration =
                     triggerValue == AnimationTriggerValue.Unset ? TimeSpan.FromSeconds(0.3) : TimeSpan.FromSeconds(0.18),
 
-                AccelerationRatio = 
+                AccelerationRatio =
                     triggerValue == AnimationTriggerValue.Unset ? 0.3 : 0.7,
 
-                EasingFunction = 
+                EasingFunction =
                     new QuarticEase()
             };
 
-            Storyboard.SetTargetProperty(animation, new PropertyPath(propertyToAnimate));
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
 
             Storyboard animationStoryboard = new Storyboard();
             animationStoryboard.Children.Add(animation);

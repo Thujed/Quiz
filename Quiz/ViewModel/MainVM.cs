@@ -10,6 +10,7 @@ using Prism.Mvvm;
 using Prism.Commands;
 using System.Windows;
 using System.Windows.Input;
+using Quiz.Supports.Extensions;
 
 namespace Quiz.ViewModel
 {
@@ -44,6 +45,15 @@ namespace Quiz.ViewModel
             ChangePointsVM.OnPlayerPointsChanged += ChangePointsVM_OnPlayerPointsChanged;
         }
 
+        public ObservableCollection<PlayerDataVM> Players { get; set; }
+        public PlayerDataVM SelectedPlayer { get; set; }
+
+        public MainBarVM BarVM { get; set; } = new MainBarVM();
+        public ChangeGroupPointsVM ChangePointsVM { get; set; } = new ChangeGroupPointsVM();
+        public GeneralPlayerDataVM PlayersPresentationData { get; set; } = new GeneralPlayerDataVM(MAX_POINT_VALUE);
+
+        public MainViewInteractionsVM InteractionsVM { get; set; } = new MainViewInteractionsVM();
+
         private void ChangePointsVM_OnPlayerPointsChanged(int obj)
         {
             int newPoints = SelectedPlayer.PlayerPoints + obj;
@@ -62,16 +72,8 @@ namespace Quiz.ViewModel
         {
             SelectedPlayer = obj;
             RaisePropertyChanged("SelectedPlayer");
-            ChangePointsVM.ChangePointViewVisibility = Visibility.Visible;
+            PlayersPresentationData.FadeOutAnimationValue = OtherExtensions.ReverceAnimationTriggerValue(PlayersPresentationData.FadeOutAnimationValue);
         }
 
-        public ObservableCollection<PlayerDataVM> Players { get; set; }
-        public PlayerDataVM SelectedPlayer { get; set; }
-
-        public MainBarVM BarVM { get; set; } = new MainBarVM();
-        public ChangeGroupPointsVM ChangePointsVM { get; set; } = new ChangeGroupPointsVM();
-        public GeneralPlayerDataVM PlayersPresentationData { get; set; } = new GeneralPlayerDataVM(MAX_POINT_VALUE);
-
-        public MainViewInteractionsVM InteractionsVM { get; set; } = new MainViewInteractionsVM();
     }   
 }

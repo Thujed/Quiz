@@ -25,8 +25,6 @@ namespace Quiz.Supports.PropertyAnimationHandlers
 
         protected static Parent Instance { get; set; } = new Parent();
 
-        protected static Property LastAnimationValue { get; set; } = default(Property);
-
         #region Dependency properties
 
         /// <summary>
@@ -149,6 +147,7 @@ namespace Quiz.Supports.PropertyAnimationHandlers
 
 
         #endregion
+
         private static void OnTriggerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
             Property defaultValue = GetDefaultValue(d);
 
@@ -174,9 +173,9 @@ namespace Quiz.Supports.PropertyAnimationHandlers
                                                                     Property newValue, Property oldValue)
         {
             if (element is FrameworkElement) {
-                GetAnimationStoryboard(propertyToAnimate, triggerValue, newValue, oldValue).Begin(element as FrameworkElement);
+                GetAnimationStoryboard(element, propertyToAnimate, triggerValue, newValue, oldValue).Begin(element as FrameworkElement);
             } else if (element is FrameworkContentElement) {
-                GetAnimationStoryboard(propertyToAnimate, triggerValue, newValue, oldValue).Begin(element as FrameworkContentElement);
+                GetAnimationStoryboard(element, propertyToAnimate, triggerValue, newValue, oldValue).Begin(element as FrameworkContentElement);
             } else {
                 throw new ArgumentException("Element type must be FrameworkElement or FrameworkContentElement");
             }
@@ -189,7 +188,7 @@ namespace Quiz.Supports.PropertyAnimationHandlers
         /// <param name="newValue"></param>
         /// <param name="oldValue"></param>
         /// <returns></returns>
-        public abstract Storyboard GetAnimationStoryboard(string propertyToAnimate, AnimationTriggerValue triggerValue, Property newValue, Property oldValue);
+        public abstract Storyboard GetAnimationStoryboard(DependencyObject element, string propertyToAnimate, AnimationTriggerValue triggerValue, Property newValue, Property oldValue);
     }
 
     public enum AnimationTriggerValue

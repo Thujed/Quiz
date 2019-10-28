@@ -89,7 +89,9 @@
     <Compile Include="Supports\Extensions\OtherExtensions.cs" />
     <Compile Include="Supports\Extensions\ReflectionHelper.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\BasePropertyAnimation.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\DoublePropertyAnimation.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\GridPropertyAnimation.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\SlidingShowDoubleAnimation.cs" />
     <Compile Include="ViewModel\ChangeGroupPointsVM.cs" />
     <Compile Include="ViewModel\GeneralPlayerDataVM.cs" />
     <Compile Include="ViewModel\MainViewInteractionsVM.cs" />
