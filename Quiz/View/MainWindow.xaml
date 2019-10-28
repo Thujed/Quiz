@@ -81,13 +81,7 @@
     </Window.Resources>
 
     <Grid>
-
-
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="107*"/>
-                <RowDefinition Height="163*"/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="5*"
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
@@ -103,11 +97,7 @@
                                   ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
             </Grid.ColumnDefinitions>
 
-            <v:SettingsView Grid.Column="0" Grid.RowSpan="2" md:ShadowAssist.ShadowDepth="Depth3" md:ShadowAssist.ShadowEdges="Right">
-                <!--<v:SettingsView.Effect>
-                    <DropShadowEffect Color="Black" BlurRadius="10"  Opacity="0.5" ShadowDepth="0" />
-                </v:SettingsView.Effect>-->
-            </v:SettingsView>
+            <v:SettingsView Grid.Column="0" Grid.RowSpan="2"/>
             <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch" Grid.RowSpan="2"/>
             <v:QuestionView Grid.Column="4" Grid.RowSpan="2"/>
         </Grid>
@@ -143,6 +133,6 @@
                 </DockPanel>
             </Border>
         </DockPanel>
-    
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="2508,216,-708,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

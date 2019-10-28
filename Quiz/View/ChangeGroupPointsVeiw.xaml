@@ -67,7 +67,7 @@
                                 </Border.RenderTransform>
                             </Border>
                         </Grid>
-                        <TextBox x:Name ="points"  Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SnapsToDevicePixels="True" />
+                        <TextBox PreviewTextInput="Points_PreviewTextInput" x:Name ="points"  Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SnapsToDevicePixels="True" />
                     </DockPanel>
                 </Grid>
             </Grid>

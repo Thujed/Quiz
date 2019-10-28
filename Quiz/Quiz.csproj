@@ -88,6 +88,7 @@
     <Compile Include="Supports\Extension.cs" />
     <Compile Include="Supports\Extensions\OtherExtensions.cs" />
     <Compile Include="Supports\Extensions\ReflectionHelper.cs" />
+    <Compile Include="Supports\Extensions\UIExtensions.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\BasePropertyAnimation.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\GridPropertyAnimation.cs" />
     <Compile Include="ViewModel\ChangeGroupPointsVM.cs" />
