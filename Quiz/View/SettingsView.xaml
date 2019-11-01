@@ -377,22 +377,17 @@
         <StackPanel Orientation="Horizontal" Margin="10,0">
             <TextBlock Text="Select " FontSize="26" FontFamily="Gadugi" VerticalAlignment="Center" Foreground="#707070" />
 
-
-
-
             <ComboBox Margin="24,0,0,0" Foreground="#707070" FontFamily="Gadugi" FontSize="19pt" 
                       md:HintAssist.Hint="Serial port" >
                 <ComboBoxItem>COM 1</ComboBoxItem>
                 <ComboBoxItem>COM 2</ComboBoxItem>
                 <ComboBoxItem>COM 3</ComboBoxItem>
             </ComboBox>
-
         </StackPanel>
 
         <TreeView Foreground="#707070">
             <TreeViewItem Header="Cashe" FontSize="24" FontFamily="Gadugi">
-
-            
+   
             <TreeViewItem>
                 <TreeViewItem.Header>
                     <StackPanel Orientation="Horizontal">
