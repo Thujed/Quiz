@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace Quiz.Supports.PropertyAnimationHandlers
+namespace Quiz.Supports.PropertyAnimationHandlers.TriggerAnimationHandlers
 {
     public abstract class BaseAnimationTriggerAttachedProperty<Parent>
         where Parent : BaseAnimationTriggerAttachedProperty<Parent>, new()

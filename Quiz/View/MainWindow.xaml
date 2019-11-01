@@ -11,6 +11,8 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:a="clr-namespace:Quiz.Supports.CustomAnimations"
         xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
+        xmlns:ath="clr-namespace:Quiz.Supports.PropertyAnimationHandlers.TriggerAnimationHandlers"
+        xmlns:av="clr-namespace:Quiz.Supports.PropertyAnimationHandlers.ValueHandlers"
         
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
@@ -25,7 +27,7 @@
         <c:BooleanInverter x:Key="BooleanInverter" />
 
         <DataTemplate DataType="{x:Type local:PlayerDataVM}">
-            <DockPanel Margin="14,45,0,0" ah:FadeInOutAnimation.Trigger="{Binding Path=DataContext.PlayersPresentationData.PlayersVisibility, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <DockPanel Margin="14,45,0,0" ath:FadeInOutAnimation.Trigger="{Binding Path=DataContext.PlayersPresentationData.PlayersVisibility, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
 
                 <!--Player tile-->
                 <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
@@ -76,8 +78,9 @@
                     </Border>
 
                     <!--Points count text block-->
-                    <TextBlock Grid.Column="1" Text="{Binding PlayerPoints}" VerticalAlignment="Center" HorizontalAlignment="Right" 
-                               FontFamily="Gadugi" FontSize="26pt" Margin="19,0,0,0" Foreground="#707070" />
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               FontFamily="Gadugi" FontSize="26pt" Margin="19,0,0,0" Foreground="#707070"
+                               av:NumberChangingAnimation.Value="{Binding PlayerPoints}"/>
                 </Grid>
            </DockPanel>
         </DataTemplate>
@@ -87,21 +90,21 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition ah:GridLenghtPropertyAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" 
-                                  ah:GridLenghtPropertyAnimation.AnimationProperty="Width"
-                                  ah:GridLenghtPropertyAnimation.AnimationValue="36"
-                                  ah:GridLenghtPropertyAnimation.ReverseAnimationValue="86"/>
+                <ColumnDefinition ath:GridLenghtPropertyAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" 
+                                  ath:GridLenghtPropertyAnimation.AnimationProperty="Width"
+                                  ath:GridLenghtPropertyAnimation.AnimationValue="36"
+                                  ath:GridLenghtPropertyAnimation.ReverseAnimationValue="86"/>
 
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <v:SettingsView Grid.Column="0" ah:SlidingRightAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
+            <v:SettingsView Grid.Column="0" ath:SlidingRightAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
             <v:PlayersDataView Grid.Column="2" />
-            <v:QuestionView Grid.Column="3" ah:SlidingLeftAnimation.Trigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
+            <v:QuestionView Grid.Column="3" ath:SlidingLeftAnimation.Trigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
 
             <!--Answering player area-->
-            <Grid ah:FadeInOutAnimation.Trigger="{Binding PlayersPresentationData.PlayersVisibility, Converter={StaticResource BooleanInverter}}"
+            <Grid ath:FadeInOutAnimation.Trigger="{Binding PlayersPresentationData.PlayersVisibility, Converter={StaticResource BooleanInverter}}"
                   Grid.Column="1" Grid.ColumnSpan="2" >
                 
                 <Grid.RowDefinitions>
@@ -143,7 +146,7 @@
         </Grid>
 
         <v:ChangeGroupPointsVeiw HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                 ah:SlidingUpAnimation.Trigger="{Binding ChangePointsVM.ShowingAnimationTrigger}"/>
+                                 ath:SlidingUpAnimation.Trigger="{Binding ChangePointsVM.ShowingAnimationTrigger}"/>
 
         <DockPanel Margin="0,-10,0,10" VerticalAlignment="Top">
             <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">

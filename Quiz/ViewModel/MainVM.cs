@@ -74,7 +74,7 @@ namespace Quiz.ViewModel
             RaisePropertyChanged("SelectedPlayer");
 
             ChangePointsVM.ShowView();
-            PlayersPresentationData.PlayersVisibility = false;
+            //PlayersPresentationData.PlayersVisibility = false;
         }
     }   
 }
