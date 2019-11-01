@@ -79,7 +79,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Question.cs" />
+    <Compile Include="Supports\Converters\BooleanInverter.cs" />
     <Compile Include="Supports\Converters\IntegerToStarGridLengthConverter.cs" />
+    <Compile Include="Supports\Converters\MultiBindingToArrayConverter.cs" />
     <Compile Include="Supports\Converters\PlayerPointsInverter.cs" />
     <Compile Include="Supports\Converters\ProportionalPixelsConverter.cs" />
     <Compile Include="Supports\Converters\RgbToHsl.cs" />
@@ -89,10 +91,12 @@
     <Compile Include="Supports\Extensions\OtherExtensions.cs" />
     <Compile Include="Supports\Extensions\ReflectionHelper.cs" />
     <Compile Include="Supports\Extensions\UIExtensions.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\BaseAnimationTriggerAttachedProperty.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\BaseTriggerAttachedProperty.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\BasePropertyAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\DoublePropertyAnimation.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\FadeInOutAnimation.cs" />
     <Compile Include="Supports\PropertyAnimationHandlers\GridPropertyAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\SlidingShowDoubleAnimation.cs" />
+    <Compile Include="Supports\PropertyAnimationHandlers\BaseSlidingShowingAnimation.cs" />
     <Compile Include="Supports\Worker\DBWorker.cs" />
     <Compile Include="ViewModel\ChangeGroupPointsVM.cs" />
     <Compile Include="ViewModel\GeneralPlayerDataVM.cs" />
@@ -179,13 +183,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Supports\Images\Picture.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Supports\Images\Picture2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\kompyuter-monitor-minimalizm.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -72,8 +72,9 @@ namespace Quiz.ViewModel
         {
             SelectedPlayer = obj;
             RaisePropertyChanged("SelectedPlayer");
-            PlayersPresentationData.FadeOutAnimationValue = OtherExtensions.ReverceAnimationTriggerValue(PlayersPresentationData.FadeOutAnimationValue);
-        }
 
+            ChangePointsVM.ShowView();
+            PlayersPresentationData.PlayersVisibility = false;
+        }
     }   
 }

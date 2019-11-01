@@ -16,23 +16,28 @@ namespace Quiz.ViewModel
         public event Action<int> OnPlayerPointsChanged;
 
         public ChangeGroupPointsVM() {
-            Application.Current.MainWindow.KeyDown += (s, e) => {
+            Application.Current.MainWindow.KeyDown += MainWindow_KeyDown;
 
-                if (ChangePointViewVisibility == Visibility.Hidden)
-                return;
-                switch (e.Key) {
-                    case Key.Enter:
-                        int increasingValue = Convert.ToInt32(ScoreChangeValue);
-                        OnPlayerPointsChanged.Invoke(_isPositiveSign ? increasingValue : -increasingValue);
-                        ChangePointViewVisibility = Visibility.Hidden;
-                        break;
-                    case Key.OemTilde:
-                        IsPositiveSign = !IsPositiveSign;
-                        break;
-                }    
-            };
-            ChangePointViewVisibility = Visibility.Hidden;
+            HideView();
             IsPositiveSign = true;
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!ShowingAnimationTrigger)
+                return;
+
+            switch (e.Key) {
+                case Key.Enter:
+                    int increasingValue = Convert.ToInt32(ScoreChangeValue);
+                    OnPlayerPointsChanged.Invoke(_isPositiveSign ? increasingValue : -increasingValue);
+
+                    HideView();
+                    break;
+                case Key.OemTilde:
+                    IsPositiveSign = !IsPositiveSign;
+                    break;
+            }
         }
 
         private bool _isPositiveSign;
@@ -41,16 +46,23 @@ namespace Quiz.ViewModel
             set {
                 SetProperty(ref _isPositiveSign, value);
             }
-        } 
-
-        private Visibility _changePointViewVisibility;
-        public Visibility ChangePointViewVisibility {
-            get => _changePointViewVisibility;
-            set {
-                SetProperty(ref _changePointViewVisibility, value);
-            }
         }
 
+        private bool _showingAnimationTrigger;
+        public bool ShowingAnimationTrigger
+        {
+            get => _showingAnimationTrigger;
+            set {
+                SetProperty(ref _showingAnimationTrigger, value);
+            }
+        }
+        
         public string ScoreChangeValue { get; set; } = "1";
+
+        public void ShowView() =>
+            ShowingAnimationTrigger = true;
+
+        public void HideView() =>
+            ShowingAnimationTrigger = false;
     }
 }

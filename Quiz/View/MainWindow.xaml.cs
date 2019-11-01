@@ -30,7 +30,13 @@ namespace Quiz
             DataContext = MainWindowVM;
             InitializeComponent();
 
-            List<TextBlock> textBlocks = this.GetAllUIElements<TextBlock>();
+        }
+
+        private void MainWindowView_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+
+
         }
     }
 }

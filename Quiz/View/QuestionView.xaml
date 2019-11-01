@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Quiz.View"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1127" Background="#D5D5D5">
+             d:DesignHeight="1080" Width="800" Background="#D5D5D5">
     <DockPanel Margin="52,20,52,0">
         <DockPanel DockPanel.Dock="Top">
             <TextBlock Text="Время: " FontSize="36" Foreground="#707070" FontWeight="Bold"/>

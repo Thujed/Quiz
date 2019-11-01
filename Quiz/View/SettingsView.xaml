@@ -373,7 +373,7 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Margin="30,145,0,0">
+    <StackPanel Margin="30,145,20,0">
         <StackPanel Orientation="Horizontal" Margin="10,0">
             <TextBlock Text="Select " FontSize="26" FontFamily="Gadugi" VerticalAlignment="Center" Foreground="#707070" />
 

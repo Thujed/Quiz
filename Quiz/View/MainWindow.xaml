@@ -14,18 +14,18 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" Loaded="MainWindowView_Loaded">
 
     <Window.Resources>
         <c:ColorDarker x:Key="ColorDarker"/>
         <c:PlayerPointsInverter x:Key="PlayerPointsInverter" />
         <c:IntegerToStarGridLengthConverter x:Key="IntegerToStarGridLengthConverter"/>
+        <c:ProportionalPixelsConverter x:Key="PropotionalPixelsConverter" />
+        <c:MultiBindingToArrayConverter x:Key="MultiBindingToArrayConverter"/>
+        <c:BooleanInverter x:Key="BooleanInverter" />
 
         <DataTemplate DataType="{x:Type local:PlayerDataVM}">
-            <DockPanel Margin="0,45,0,0" ah:DoublePropertyAnimation.AnimationValue = "0.0"
-                       ah:DoublePropertyAnimation.DefaultValue = "1.0"
-                       ah:DoublePropertyAnimation.PropertyToAnimate="Opacity"
-                       ah:DoublePropertyAnimation.AnimationTrigger="{Binding Path=DataContext.PlayersPresentationData.FadeOutAnimationValue, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <DockPanel Margin="14,45,0,0" ah:FadeInOutAnimation.Trigger="{Binding Path=DataContext.PlayersPresentationData.PlayersVisibility, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
 
                 <!--Player tile-->
                 <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
@@ -86,28 +86,66 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*" ah:GridPropertyAnimation.AnimationValue="5*"
-                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition ah:GridLenghtPropertyAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" 
+                                  ah:GridLenghtPropertyAnimation.AnimationProperty="Width"
+                                  ah:GridLenghtPropertyAnimation.AnimationValue="36"
+                                  ah:GridLenghtPropertyAnimation.ReverseAnimationValue="86"/>
 
-                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="100"  ah:GridPropertyAnimation.AnimationValue="50"
-                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
-
-                <ColumnDefinition Width="20*" />
-
-                <ColumnDefinition Width="0.5*" />
-
-                <ColumnDefinition ah:GridPropertyAnimation.DefaultValue="0*"  ah:GridPropertyAnimation.AnimationValue="25*"
-                                  ah:GridPropertyAnimation.AnimationTrigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <v:SettingsView Grid.Column="0" Grid.RowSpan="2"/>
-            <v:PlayersDataView Grid.Column="2" HorizontalAlignment="Stretch" Grid.RowSpan="2"/>
-            <v:QuestionView Grid.Column="4" Grid.RowSpan="2"/>
+            <v:SettingsView Grid.Column="0" ah:SlidingRightAnimation.Trigger="{Binding InteractionsVM.OpenSettingsAnimationTrigger}" />
+            <v:PlayersDataView Grid.Column="2" />
+            <v:QuestionView Grid.Column="3" ah:SlidingLeftAnimation.Trigger="{Binding InteractionsVM.OpenQuestionsAnimationTrigger}" />
+
+            <!--Answering player area-->
+            <Grid ah:FadeInOutAnimation.Trigger="{Binding PlayersPresentationData.PlayersVisibility, Converter={StaticResource BooleanInverter}}"
+                  Grid.Column="1" Grid.ColumnSpan="2" >
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--Player tile and points area-->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
+                    
+                    <!--Player tile-->
+                    <Border Grid.Column="1" Grid.ColumnSpan="2" Padding="90,0" CornerRadius="20" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding SelectedPlayer.PlayerColor}"/>
+                        </Border.Background>
+
+                        <Border.Effect>
+                            <DropShadowEffect Color="{Binding SelectedPlayer.PlayerColor}" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
+                        </Border.Effect>
+
+                        <TextBlock Text="{Binding SelectedPlayer.PlayerName}" FontFamily="Bebas Neue" 
+                                FontWeight="Bold" Foreground="White" FontSize="70pt" 
+                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    
+                    <!--Player points text-->
+                    <TextBlock Text="{Binding SelectedPlayer.PlayerPoints}" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               FontFamily="Gadugi" FontSize="50pt" Margin="30,0,0,0" Foreground="#707070" />
+                </StackPanel>
+                
+                <!--Add extra points-->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Дополнительные баллы: " FontFamily="Gadugi" FontSize="25pt" Foreground="#707070" />
+                    <TextBlock Text="3" FontFamily="Gadugi" FontSize="25pt" Foreground="#707070" />
+                </StackPanel>
+            </Grid>
         </Grid>
 
-        <v:ChangeGroupPointsVeiw x:Name="CHPV" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <v:ChangeGroupPointsVeiw HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                 ah:SlidingUpAnimation.Trigger="{Binding ChangePointsVM.ShowingAnimationTrigger}"/>
 
-        <DockPanel VerticalAlignment="Top">
+        <DockPanel Margin="0,-10,0,10" VerticalAlignment="Top">
             <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">

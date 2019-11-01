@@ -44,12 +44,12 @@ namespace Quiz.ViewModel
             }
         }
 
-        private AnimationTriggerValue _fadeOutAnimationValue = AnimationTriggerValue.StartReverce;
-        public AnimationTriggerValue FadeOutAnimationValue
+        private bool _playersVisibility = true;
+        public bool PlayersVisibility
         {
-            get => _fadeOutAnimationValue;
+            get => _playersVisibility;
             set {
-                SetProperty(ref _fadeOutAnimationValue, value);
+                SetProperty(ref _playersVisibility, value);
             }
         }
 

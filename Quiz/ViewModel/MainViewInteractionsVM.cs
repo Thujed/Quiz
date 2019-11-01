@@ -23,28 +23,26 @@ namespace Quiz.ViewModel
                 switch (e.Key)
                 {
                     case Key.Q:
-                        OpenQuestionsAnimationTrigger =
-                     OtherExtensions.ReverceAnimationTriggerValue(OpenQuestionsAnimationTrigger);
+                        OpenQuestionsAnimationTrigger = !OpenQuestionsAnimationTrigger;
                         break;
                 }
             };
 
             SettingsIconClickCommand = new DelegateCommand(() =>
-               OpenSettingsAnimationTrigger =
-                    OtherExtensions.ReverceAnimationTriggerValue(OpenSettingsAnimationTrigger)
+                OpenSettingsAnimationTrigger = !OpenSettingsAnimationTrigger
             );
 
-            OpenSettingsAnimationTrigger = AnimationTriggerValue.StartReverce;
-            OpenQuestionsAnimationTrigger = AnimationTriggerValue.StartReverce;
+            OpenSettingsAnimationTrigger = false;
+            OpenQuestionsAnimationTrigger = false;
         }
 
-        private AnimationTriggerValue _openSettingsAnimationTrigger;
-        public AnimationTriggerValue OpenSettingsAnimationTrigger
+        private bool _openSettingsAnimationTrigger;
+        public bool OpenSettingsAnimationTrigger
         {
             get => _openSettingsAnimationTrigger;
             set {
-                if (value == AnimationTriggerValue.Start && _openQuestionsAnimationTrigger == AnimationTriggerValue.Start) {
-                    _openQuestionsAnimationTrigger = AnimationTriggerValue.StartReverce;
+                if (value && _openQuestionsAnimationTrigger) {
+                    _openQuestionsAnimationTrigger = false;
                     RaisePropertyChanged("OpenQuestionsAnimationTrigger");
                 }
 
@@ -52,21 +50,19 @@ namespace Quiz.ViewModel
             }
         }
 
-        private AnimationTriggerValue _openQuestionsAnimationTrigger;
-        public AnimationTriggerValue OpenQuestionsAnimationTrigger
+        private bool _openQuestionsAnimationTrigger;
+        public bool OpenQuestionsAnimationTrigger
         {
             get => _openQuestionsAnimationTrigger;
             set {
-                if (value == AnimationTriggerValue.Start && _openSettingsAnimationTrigger == AnimationTriggerValue.Start) {
-                    _openSettingsAnimationTrigger = AnimationTriggerValue.StartReverce;
+                if (value && _openSettingsAnimationTrigger) {
+                    _openSettingsAnimationTrigger = false;
                     RaisePropertyChanged("OpenSettingsAnimationTrigger");
                 }
 
                 SetProperty(ref _openQuestionsAnimationTrigger, value);
             }
         }
-
-        
 
         public DelegateCommand SettingsIconClickCommand { get; }
         public DelegateCommand CloseClick { get; }

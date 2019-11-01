@@ -3,47 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c ="clr-namespace:Quiz.Supports.Converters"
              xmlns:local="clr-namespace:Quiz.ViewModel"
              xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
              mc:Ignorable="d" 
              Background="White">
 
+
     <Grid Margin="0,20,0,0" d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="14,0,0,0" Orientation="Horizontal">
                 <TextBlock Text="Вопрос: " FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#707070"/>
                 <TextBlock Text="{Binding BarVM.QuestionNumber}" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#707070"/>
             </StackPanel>
 
             <ItemsControl ItemsSource="{Binding Players}"/>
         </StackPanel>
-
-        <TextBlock Text="{Binding SelectedPlayer.PlayerName}" FontFamily="Bebas Neue" 
-                    FontWeight="Bold" Foreground="Black" FontSize="70pt" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    ah:DoublePropertyAnimation.AnimationValue = "1.0"
-                    ah:DoublePropertyAnimation.DefaultValue = "0.0"
-                    ah:DoublePropertyAnimation.PropertyToAnimate="Opacity" 
-                    ah:DoublePropertyAnimation.AnimationTrigger="{Binding PlayersPresentationData.FadeOutAnimationValue}" />
-        
-        <!--<Border Padding="90,0" CornerRadius="20" 
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                ah:DoublePropertyAnimation.AnimationValue = "1.0"
-                ah:DoublePropertyAnimation.DefaultValue = "0.0"
-                ah:DoublePropertyAnimation.PropertyToAnimate="Opacity"
-                ah:DoublePropertyAnimation.AnimationTrigger="{Binding PlayersPresentationData.FadeOutAnimationValue}" >
-
-            <Border.Background>
-                <SolidColorBrush Color="{Binding SelectedPlayer.PlayerColor}"/>
-            </Border.Background>
-
-            <Border.Effect>
-                <DropShadowEffect Color="{Binding SelectedPlayer.PlayerColor}" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
-            </Border.Effect>
-
-            <TextBlock Text="100" FontFamily="Bebas Neue" 
-                       FontWeight="Bold" Foreground="White" FontSize="70pt" 
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>-->
     </Grid>
 </UserControl>
