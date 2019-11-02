@@ -80,7 +80,7 @@
                     <!--Points count text block-->
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" 
                                FontFamily="Gadugi" FontSize="26pt" Margin="19,0,0,0" Foreground="#707070"
-                               av:NumberChangingAnimation.Value="{Binding PlayerPoints}"/>
+                               Text="{Binding PlayerPoints}"/>
                 </Grid>
            </DockPanel>
         </DataTemplate>
