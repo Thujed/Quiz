@@ -148,7 +148,9 @@
         <v:ChangeGroupPointsVeiw HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                  ath:SlidingUpAnimation.Trigger="{Binding ChangePointsVM.ShowingAnimationTrigger}"/>
 
-        <DockPanel Margin="0,-10,0,10" VerticalAlignment="Top">
+
+
+        <DockPanel VerticalAlignment="Top">
             <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">
@@ -162,11 +164,11 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
-                <Image Source="{DynamicResource CancelIcon}" Width="25" Height="25" Margin="20" />
+                <Image Source="{DynamicResource CancelIcon}" Width="25" Height="25" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Border>
             <Border VerticalAlignment="Top">
                 <DockPanel>
-                    <Image Source="{DynamicResource SettingsIcon}"  Width="35" Height="35" Margin="20">
+                    <Image Source="{DynamicResource SettingsIcon}"  Width="35" Height="35" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseUp">
                                 <i:InvokeCommandAction Command="{Binding InteractionsVM.SettingsIconClickCommand}" />

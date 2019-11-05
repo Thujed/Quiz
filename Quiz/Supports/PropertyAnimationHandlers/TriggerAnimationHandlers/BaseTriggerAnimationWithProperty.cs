@@ -64,7 +64,7 @@ namespace Quiz.Supports.PropertyAnimationHandlers.TriggerAnimationHandlers
             GridAnimation animation = new GridAnimation() {
                 To = GetReverseAnimationValue(d),
                 From = GetAnimationValue(d),
-                Duration = TimeSpan.FromSeconds(0.3)
+                Duration = TimeSpan.FromSeconds(0.4)
             };
 
             Storyboard.SetTargetProperty(animation, new PropertyPath(GetAnimationProperty(d)));

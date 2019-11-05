@@ -21,7 +21,7 @@ namespace Quiz.Supports.PropertyAnimationHandlers
                     triggerValue == AnimationTriggerValue.Start || triggerValue == AnimationTriggerValue.Unset ? oldValue : newValue,
 
                 Duration = 
-                    triggerValue == AnimationTriggerValue.Unset ? TimeSpan.FromSeconds(0.3) : TimeSpan.FromSeconds(0.18),
+                    triggerValue == AnimationTriggerValue.Unset ? TimeSpan.FromSeconds(0.9) : TimeSpan.FromSeconds(0.18),
 
                 AccelerationRatio = 
                     triggerValue == AnimationTriggerValue.Unset ? 0.3 : 0.7,

@@ -33,44 +33,48 @@
         </Style>
 
     </UserControl.Resources>
-
-    <Border Background="#D5D5D5" CornerRadius="40,40,0,0" d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" >
-        <StackPanel>
-            <!--Header-->
-            <TextBlock Text="Добавить/снять баллы" FontSize="26" Foreground="#707070" FontFamily="Gafugi" HorizontalAlignment="Center" Margin="0,19,0,0"/>
+    
+    <md:Card Background="#D5D5D5" md:UniformCornerRadius="30" Margin="32"
+                    d:DataContext="{d:DesignInstance {x:Type local:MainVM}}"
+                    md:ShadowAssist.ShadowDepth="Depth4">
+        
+            <StackPanel>
+                <!--Header-->
+                <TextBlock Text="Добавить/снять баллы" FontSize="26" Foreground="#707070" FontFamily="Gafugi" HorizontalAlignment="Center" Margin="0,19,0,0"/>
             
-            <Grid Margin="30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Border Padding="90,0" Grid.Column="0" CornerRadius="20" HorizontalAlignment="Right" Margin="0,0,10,0" >
-                    <Border.Background>
-                        <SolidColorBrush Color="{Binding SelectedPlayer.PlayerColor}"/>
-                    </Border.Background>
-                    <Border.Effect>
-                        <DropShadowEffect Color="{Binding SelectedPlayer.PlayerColor}" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
-                    </Border.Effect>
-                    <TextBlock Text="{Binding SelectedPlayer.PlayerName}" FontFamily="Bebas Neue" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="70pt" SnapsToDevicePixels="True"/>
-                </Border>
-                <Border Background="#707070" HorizontalAlignment="Right" Width="1"/>
+                    <Border Padding="90,0" Grid.Column="0" CornerRadius="20" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding SelectedPlayer.PlayerColor}"/>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Color="{Binding SelectedPlayer.PlayerColor}" BlurRadius="20"  Opacity="0.4" ShadowDepth="0" />
+                        </Border.Effect>
+                        <TextBlock Text="{Binding SelectedPlayer.PlayerName}" FontFamily="Bebas Neue" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="70pt" SnapsToDevicePixels="True"/>
+                    </Border>
+                    <Border Background="#707070" HorizontalAlignment="Right" Width="1"/>
 
-                <Grid Grid.Column="1" >
-                    <DockPanel Margin="10">
-                        <TextBlock Text="{Binding SelectedPlayer.PlayerPoints}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" SnapsToDevicePixels="True"/>
-                        <Grid Margin="10,0,0,0">
-                            <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2"/>
-                            <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2" Style="{StaticResource ChangeSign}">
-                                <Border.RenderTransform>
-                                    <RotateTransform Angle="0" CenterX="16.5" CenterY="1" />
-                                </Border.RenderTransform>
-                            </Border>
-                        </Grid>
-                        <TextBox PreviewTextInput="Points_PreviewTextInput" x:Name ="points"  Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SnapsToDevicePixels="True" />
-                    </DockPanel>
+                    <Grid Grid.Column="1" >
+                        <DockPanel Margin="10">
+                            <TextBlock Text="{Binding SelectedPlayer.PlayerPoints}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" SnapsToDevicePixels="True"/>
+                            <Grid Margin="10,0,0,0">
+                                <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2"/>
+                                <Border Background="#707070" Width="33" HorizontalAlignment="Left" Height="2" Style="{StaticResource ChangeSign}">
+                                    <Border.RenderTransform>
+                                        <RotateTransform Angle="0" CenterX="16.5" CenterY="1" />
+                                    </Border.RenderTransform>
+                                </Border>
+                            </Grid>
+                            <TextBox PreviewTextInput="Points_PreviewTextInput" x:Name ="points"  Text="{Binding ChangePointsVM.ScoreChangeValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Bebas Neue" Foreground="#707070" FontSize="74pt" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SnapsToDevicePixels="True" />
+                        </DockPanel>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </StackPanel>
-    </Border>
+            </StackPanel>
+
+    </md:Card>
 </UserControl>

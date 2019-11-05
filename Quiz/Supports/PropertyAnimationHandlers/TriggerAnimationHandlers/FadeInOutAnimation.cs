@@ -27,7 +27,7 @@ namespace Quiz.Supports.PropertyAnimationHandlers.TriggerAnimationHandlers
         public override Storyboard GetAnimationStoryboard(DependencyObject d) {
             DoubleAnimation animation = new DoubleAnimation() {
                 To = 1.0,
-                Duration = TimeSpan.FromSeconds(0.3)
+                Duration = TimeSpan.FromSeconds(0.6)
             };
 
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));

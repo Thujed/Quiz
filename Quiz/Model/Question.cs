@@ -10,9 +10,14 @@ namespace Quiz.Model
 {
     public class Question : BindableBase
     {
-        public Question(string questionText, TimeSpan timeToAnswer) {
-            this.QuestionText = questionText;
-            this.TimeToAnswer = timeToAnswer;
+        public Question(string text, TimeSpan time, float points, string pathToImage, string answerText, string pathToAnswerImage) {
+            this.QuestionText = text;
+            this.TimeToAnswer = time;
+            this.Points = points;
+            this.pathToImage = pathToImage;
+            this.AmswerText = answerText;
+            this.pathToAnswerImage = pathToAnswerImage;
+
             timer = new Timer((o) =>
             {
                 StopTimer();
@@ -23,7 +28,15 @@ namespace Quiz.Model
 
         private Timer timer;
 
+        public float Points { get; }
+
         public string QuestionText { get; }
+
+        public string AmswerText { get; }
+
+        public string pathToImage { get; }
+
+        public string pathToAnswerImage { get; }
 
         private TimeSpan _timeToAmswer;
         public TimeSpan TimeToAnswer {
