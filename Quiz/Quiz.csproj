@@ -100,6 +100,9 @@
       <DependentUpon>QuizDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Supports\Converters\BooleanInverter.cs" />
+    <Compile Include="Supports\Converters\BrushToHexConverter.cs" />
+    <Compile Include="Supports\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Supports\Converters\HueConverter.cs" />
     <Compile Include="Supports\Converters\IntegerToStarGridLengthConverter.cs" />
     <Compile Include="Supports\Converters\MultiBindingToArrayConverter.cs" />
     <Compile Include="Supports\Converters\PlayerPointsInverter.cs" />
@@ -131,6 +134,9 @@
     <Compile Include="View\ChangeGroupPointsVeiw.xaml.cs">
       <DependentUpon>ChangeGroupPointsVeiw.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PlayersDataView.xaml.cs">
       <DependentUpon>PlayersDataView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,10 @@
     <Page Include="View\ChangeGroupPointsVeiw.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PlayersDataView.xaml">
       <SubType>Designer</SubType>

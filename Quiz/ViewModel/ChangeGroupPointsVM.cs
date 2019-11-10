@@ -13,7 +13,7 @@ namespace Quiz.ViewModel
 {
     public class ChangeGroupPointsVM : BindableBase
     {
-        public event Action<int> OnPlayerPointsChanged;
+        public event Action<double> OnPlayerPointsChanged;
 
         public ChangeGroupPointsVM() {
             Application.Current.MainWindow.KeyDown += MainWindow_KeyDown;
@@ -29,7 +29,7 @@ namespace Quiz.ViewModel
 
             switch (e.Key) {
                 case Key.Enter:
-                    int increasingValue = Convert.ToInt32(ScoreChangeValue);
+                    double increasingValue = Convert.ToDouble(ScoreChangeValue.Replace('.', ','));
                     OnPlayerPointsChanged.Invoke(_isPositiveSign ? increasingValue : -increasingValue);
 
                     HideView();

@@ -22,7 +22,7 @@ namespace Quiz.ViewModel
         private const int POINTS_FONT_SIZE = 26;
         private const int POINTS_BAR_OFFSET = 19;
 
-        public GeneralPlayerDataVM(int maxPointValue)
+        public GeneralPlayerDataVM(double maxPointValue)
         {
             MaxPointValue = maxPointValue;
         }
@@ -35,8 +35,8 @@ namespace Quiz.ViewModel
             }
         }
 
-        private int _maxPointValue;
-        public int MaxPointValue
+        private double _maxPointValue;
+        public double MaxPointValue
         {
             get => _maxPointValue;
             set {

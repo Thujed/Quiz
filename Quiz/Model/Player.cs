@@ -10,7 +10,7 @@ namespace Quiz.Model
 {
     public class Player : BindableBase
     {
-        public Player(string playerName, int playerPoints, Color playerColor) {
+        public Player(string playerName, double playerPoints, Color playerColor) {
             this.PlayerName = playerName;
             this.PlayerPoints = playerPoints;
             this.PlayerColor = playerColor;
@@ -18,10 +18,17 @@ namespace Quiz.Model
 
         public Player() { }
 
-        public string PlayerName { get; }
+        private string _playerName;
+        public string PlayerName
+        {
+            get => _playerName;
+            set {
+                SetProperty(ref _playerName, value);
+            }
+        }
 
-        private int _playerPoints;
-        public int PlayerPoints {
+        private double _playerPoints;
+        public double PlayerPoints {
             get => _playerPoints;
             set {
                 SetProperty(ref _playerPoints, value);

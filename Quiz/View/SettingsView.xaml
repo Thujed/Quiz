@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Quiz.View"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Background="#FFD5D5D5">
-   
+
     <UserControl.Resources>
 
         <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
@@ -435,5 +436,32 @@
             </TreeViewItem>
         </TreeView>
         <TextBlock Text="Players" FontSize="26" FontFamily="Gadugi" Foreground="#707070" Margin="10,7,0,0"  />
+        <ItemsControl ItemsSource="{Binding Players}" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="5,20,0,0">
+                        
+                        <!--Player tile-->
+                        <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="{Binding PlayerColor}" Opacity="0.4" ShadowDepth="0" />
+                            </Border.Effect>
+
+                            <Border.Background>
+                                <SolidColorBrush Color="{Binding PlayerColor}"/>
+                            </Border.Background>
+
+                            <TextBox Text="{Binding PlayerName, UpdateSourceTrigger=PropertyChanged}" 
+                                     md:TextFieldAssist.UnderlineBrush="{x:Null}"
+                                     md:TextFieldAssist.DecorationVisibility="Collapsed"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                     FontFamily="Bebas Neue" Foreground="White" FontSize="25pt"
+                                     IsEnabled="{Binding Path=DataContext.InteractionsVM.OpenSettingsAnimationTrigger, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" IsHitTestVisible="True" AllowDrop="False" />
+                        </Border>
+                    </DockPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <local:ColorPicker />
     </StackPanel>
 </UserControl>

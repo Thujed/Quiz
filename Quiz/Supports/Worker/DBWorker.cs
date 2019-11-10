@@ -1,4 +1,5 @@
 ﻿using Quiz.Model;
+using Quiz.Supports.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,13 +15,11 @@ namespace Quiz.Supports.Worker
 {
     class DBWorker
     {
-        private SqlConnection _connection = new SqlConnection(Quiz.Properties.Settings.Default.QuizDBConnectionString);
-
-
         public ObservableCollection<Question> GetQuestions() {
             ObservableCollection<Question> questions = new ObservableCollection<Question>();
-            using (_connection) {
-                SqlCommand cmd = new SqlCommand("GetAllQuestions", _connection);
+
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.QuizDBConnectionString)) {
+                SqlCommand cmd = new SqlCommand("GetAllQuestions", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 DataTable questionsTable = new DataTable();
                 questionsTable.Load(cmd.ExecuteReader());
@@ -44,9 +43,11 @@ namespace Quiz.Supports.Worker
         public ObservableCollection<Player> GetAllPlayers()
         {
             ObservableCollection<Player> players = new ObservableCollection<Player>();
-            using (_connection)
+
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.QuizDBConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("GetAllPlayers", _connection);
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetAllPlayers", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 DataTable playerTable = new DataTable();
                 playerTable.Load(cmd.ExecuteReader());
@@ -54,11 +55,11 @@ namespace Quiz.Supports.Worker
 
                 foreach (DataRow row in playerTable.Rows)
                 {
-                    players.Add(new Player(
-                        (string)row.ItemArray[0],
-                        (int)row.ItemArray[2],
-                        (Color)row.ItemArray[1]
-                    ));
+                    string playerName = row.ItemArray[0].ToString();
+                    double playerPoints = Convert.ToDouble(row.ItemArray[2]);
+                    Color playerColor = Convert.ToInt32(row.ItemArray[1]).ToColor();
+
+                    players.Add(new Player(playerName, playerPoints, playerColor));
                 }
             }
 

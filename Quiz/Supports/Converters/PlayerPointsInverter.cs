@@ -17,7 +17,7 @@ namespace Quiz.Supports.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
             if (values[0] != null && values[1] != null) {
-                return new GridLength((int)values[1] - (int)values[0], GridUnitType.Star);
+                return new GridLength((double)values[1] - (double)values[0], GridUnitType.Star);
             }
             return null;
         }
