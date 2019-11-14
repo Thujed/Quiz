@@ -1,15 +1,7 @@
 ﻿using Prism.Mvvm;
-using Quiz.Supports;
-using Quiz.Supports.PropertyAnimationHandlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Quiz.Support.Extensions;
 using System.Windows;
 using System.Windows.Media;
-
-
 
 namespace Quiz.ViewModel
 {
@@ -60,8 +52,7 @@ namespace Quiz.ViewModel
         public void OnPlayersInfoUpdate(string biggestPlayerName)
         {
             //Measure text of tile with player name
-            PlayerTileWidth = Extension.MeasureStringWidth(
-                biggestPlayerName,
+            PlayerTileWidth = biggestPlayerName.MeasureStringWidth(
                 new FontFamily("Bebas Neue"),
                 FontStyles.Normal,
                 FontWeights.Bold,

@@ -6,14 +6,12 @@
         xmlns:local="clr-namespace:Quiz.ViewModel"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:v ="clr-namespace:Quiz.View"
-        xmlns:c ="clr-namespace:Quiz.Supports.Converters"
-        xmlns:s ="clr-namespace:Quiz.Supports"
+        xmlns:c ="clr-namespace:Quiz.Support.Converters"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:a="clr-namespace:Quiz.Supports.CustomAnimations"
-        xmlns:ah="clr-namespace:Quiz.Supports.PropertyAnimationHandlers"
-        xmlns:ath="clr-namespace:Quiz.Supports.PropertyAnimationHandlers.TriggerAnimationHandlers"
-        xmlns:av="clr-namespace:Quiz.Supports.PropertyAnimationHandlers.ValueHandlers"
-        
+        xmlns:a="clr-namespace:Quiz.Support.CustomAnimations"
+        xmlns:ah="clr-namespace:Quiz.Support.AttachedProperties.AnimationAttachedProperties"
+        xmlns:ath="clr-namespace:Quiz.Support.AttachedProperties.AnimationAttachedProperties.TriggerAnimationAttachedProperties"
+        xmlns:av="clr-namespace:Quiz.Support.AttachedProperties.AnimationAttachedProperties.ValueAnimationAttachedProperties"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" AllowsTransparency="True" WindowStyle="None" 
         WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" Loaded="MainWindowView_Loaded">
@@ -148,7 +146,13 @@
         <v:ChangeGroupPointsVeiw HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                  ath:SlidingUpAnimation.Trigger="{Binding ChangePointsVM.ShowingAnimationTrigger}"/>
 
-
+        <v:ColorPicker x:Name="ColorPickerView" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       ath:FadeInOutAnimation.Trigger="{Binding DataContext.InteractionsVM.OpenColorPickerAnimationTrigger, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                       ath:FadeInOutAnimation.ChangeVisibility="True">
+            <v:ColorPicker.Effect>
+                <DropShadowEffect BlurRadius="30" Direction="-90"/>
+            </v:ColorPicker.Effect>
+        </v:ColorPicker>
 
         <DockPanel VerticalAlignment="Top">
             <Border DockPanel.Dock="Right" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -179,6 +183,5 @@
                 </DockPanel>
             </Border>
         </DockPanel>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="2508,216,-708,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

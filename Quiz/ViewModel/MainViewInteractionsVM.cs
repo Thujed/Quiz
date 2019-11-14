@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
-using Quiz.Supports.Extensions;
-using Quiz.Supports.PropertyAnimationHandlers;
 
 namespace Quiz.ViewModel
 {
@@ -34,6 +27,7 @@ namespace Quiz.ViewModel
 
             OpenSettingsAnimationTrigger = false;
             OpenQuestionsAnimationTrigger = false;
+            OpenColorPickerAnimationTrigger = false;
         }
 
         private bool _openSettingsAnimationTrigger;
@@ -42,8 +36,11 @@ namespace Quiz.ViewModel
             get => _openSettingsAnimationTrigger;
             set {
                 if (value && _openQuestionsAnimationTrigger) {
-                    _openQuestionsAnimationTrigger = false;
-                    RaisePropertyChanged("OpenQuestionsAnimationTrigger");
+                    OpenQuestionsAnimationTrigger = false;
+                }
+
+                if (!value) {
+                    OpenColorPickerAnimationTrigger = false;
                 }
 
                 SetProperty(ref _openSettingsAnimationTrigger, value);
@@ -56,13 +53,22 @@ namespace Quiz.ViewModel
             get => _openQuestionsAnimationTrigger;
             set {
                 if (value && _openSettingsAnimationTrigger) {
-                    _openSettingsAnimationTrigger = false;
-                    RaisePropertyChanged("OpenSettingsAnimationTrigger");
+                    OpenSettingsAnimationTrigger = false;
                 }
 
                 SetProperty(ref _openQuestionsAnimationTrigger, value);
             }
         }
+
+        private bool _openColorPickerAnimationTrigger;
+        public bool OpenColorPickerAnimationTrigger
+        {
+            get => _openColorPickerAnimationTrigger;
+            set {
+                SetProperty(ref _openColorPickerAnimationTrigger, value);
+            }
+        }
+
 
         public DelegateCommand SettingsIconClickCommand { get; }
         public DelegateCommand CloseClick { get; }

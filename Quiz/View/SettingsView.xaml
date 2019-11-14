@@ -5,341 +5,344 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Quiz.View"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+             xmlns:c="clr-namespace:Quiz.Support.Converters"
+             xmlns:ap="clr-namespace:Quiz.Support.AttachedProperties"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Background="#FFD5D5D5">
 
     <UserControl.Resources>
+        <c:ColorToBrushConverter x:Key="ColorToBrushConverter" />
 
         <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="Padding" Value="1"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TreeView}">
-                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                        <ScrollViewer x:Name="_tv_scrollviewer_" Background="{TemplateBinding Background}" CanContentScroll="false" Focusable="false" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                            <ItemsPresenter/>
-                        </ScrollViewer>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value=".56"/>
-                        </Trigger>
-                        <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
-                            <Setter Property="CanContentScroll" TargetName="_tv_scrollviewer_" Value="true"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
-                <Setter Property="ItemsPanel">
-                    <Setter.Value>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeView}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ScrollViewer x:Name="_tv_scrollviewer_" Background="{TemplateBinding Background}" CanContentScroll="false" Focusable="false" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" Value=".56"/>
+                            </Trigger>
+                            <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
+                                <Setter Property="CanContentScroll" TargetName="_tv_scrollviewer_" Value="true"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <Style x:Key="MaterialDesignTreeViewItemFocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="MaterialDesignExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Width" Value="16"/>
-        <Setter Property="Height" Value="16"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="Transparent" Height="16" Width="16">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CheckStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Unchecked" To="Checked">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <QuarticEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="Transparent" Height="16" Width="16">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Unchecked" To="Checked">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <QuarticEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition GeneratedDuration="0" To="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="45"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition GeneratedDuration="0" To="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Checked" GeneratedDuration="0" To="Unchecked">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <QuarticEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="45"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Checked">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Unchecked">
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="45"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Checked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Checked" GeneratedDuration="0" To="Unchecked">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <QuarticEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="45"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Checked">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unchecked">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Viewbox>
-                            <Canvas Width="24" Height="24">
-                                <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" 
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Viewbox>
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" 
                                               x:Name="ExpandPath"
                                               SnapsToDevicePixels="True"
                                               Fill="{TemplateBinding Foreground}" 
                                               Stroke="{TemplateBinding Foreground}" RenderTransformOrigin=".5,.5">
-                                    <Path.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform Angle="0" CenterX="4" CenterY="4"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Path.RenderTransform>
-                                </Path>
-                            </Canvas>
-                        </Viewbox>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform Angle="0" CenterX="4" CenterY="4"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="MaterialDesignTreeViewItem" TargetType="{x:Type TreeViewItem}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="8" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeViewItemFocusVisual}"/>
-        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeViewItemFocusVisual}"/>
+            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState Name="Normal"/>
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
                                                              To="0.1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
                                                              To="0.1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.6"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.18" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="ExpansionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0" To="Expanded">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Unselected"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ExpansionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0" To="Expanded">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0:0:0.3"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition GeneratedDuration="0" To="Collapsed">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0:0:0.3"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="0" Duration="0:0:0.3"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Expanded">
                                         <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Collapsed">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>                                        
+                                    </VisualState>
+                                    <VisualState x:Name="Collapsed">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="0" Duration="0:0:0.3"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Expanded">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Collapsed">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="0" Duration="0:0:0.3"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <md:ScaleHost x:Name="ScaleHost" />
-                        <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <md:ScaleHost x:Name="ScaleHost" />
+                            <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
                                       Style="{StaticResource MaterialDesignExpandCollapseToggleStyle}"
                                       Foreground="{TemplateBinding Foreground}"
                                       Margin="8 0 8 0"
                                       VerticalAlignment="Center"
                                               />
-                        
-                        <Border x:Name="MouseOverBorder"
+
+                            <Border x:Name="MouseOverBorder"
                                 Grid.Column="1" Grid.ColumnSpan="2"
                                 IsHitTestVisible="False"
                                 Opacity="0"
                                 Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                        <Border x:Name="SelectedBorder"
+                            <Border x:Name="SelectedBorder"
                                 Grid.Column="1" Grid.ColumnSpan="2"
                                 IsHitTestVisible="False"
                                 Opacity="0"
                                 Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                        <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="Transparent">
-                            <md:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                            <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="Transparent">
+                                <md:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}">
-                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
-                            </md:Ripple>
-                        </Grid>
+                                    <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
+                                </md:Ripple>
+                            </Grid>
 
-                        <ContentControl Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                            <ContentControl Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                                         x:Name="AdditionalContentControl"
                                         Content="{TemplateBinding Header}"
                                         ContentTemplate="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplate)}"
                                         ContentTemplateSelector="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplateSelector)}"                                        
                                         Visibility="Collapsed">
-                        </ContentControl>
+                            </ContentControl>
 
-                        <StackPanel Grid.Column="1" Grid.Row="2"
+                            <StackPanel Grid.Column="1" Grid.Row="2"
                                     x:Name="ItemsPanel"
                                     Margin="-16 0 0 0"
                                     Grid.ColumnSpan="2">
-                            <StackPanel.Height>
-                                <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                    <Binding ElementName="ItemsHost" Path="ActualHeight"/>
-                                    <Binding ElementName="ScaleHost" Path="Scale"/>
-                                </MultiBinding>
-                            </StackPanel.Height>
-                            <ItemsPresenter x:Name="ItemsHost"
+                                <StackPanel.Height>
+                                    <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                        <Binding ElementName="ItemsHost" Path="ActualHeight"/>
+                                        <Binding ElementName="ScaleHost" Path="Scale"/>
+                                    </MultiBinding>
+                                </StackPanel.Height>
+                                <ItemsPresenter x:Name="ItemsHost"
                                             VerticalAlignment="Top"
                                             Opacity="0"
                                             Visibility="Collapsed"/>
-                        </StackPanel>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
                                      Value="Visible">
-                            <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplateSelector), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
+                                <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(md:TreeViewAssist.AdditionalTemplateSelector), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
                                      Value="Visible">
-                            <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                        <Trigger Property="HasItems" Value="false">
-                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value=".56"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
-                <Setter Property="ItemsPanel">
-                    <Setter.Value>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-          
+                                <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" Value=".56"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="StaticButtonTemplate" TargetType="{x:Type Button}" >
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
@@ -387,60 +390,70 @@
         </StackPanel>
 
         <TreeView Foreground="#707070">
-            <TreeViewItem Header="Cashe" FontSize="24" FontFamily="Gadugi">
-   
-            <TreeViewItem>
-                <TreeViewItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                     <Viewbox Width="16" Height="16">
+            <TreeViewItem Header="Cashe" FontSize="24" FontFamily="Gadugi" RenderTransformOrigin="0.5,0.5">
+                <TreeViewItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="3"/>
+                    </TransformGroup>
+                </TreeViewItem.RenderTransform>
+
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="16" Height="16">
                                 <md:PackIcon Kind="Restart" />
                             </Viewbox>
                             <TextBlock Margin="8,0,0,0" Text="Reset cashe info" FontSize="15" />
                         </StackPanel>
-                </TreeViewItem.Header>
-            </TreeViewItem>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
 
 
-            <TreeViewItem>
-                <TreeViewItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="16" Height="16">
-                            <md:PackIcon Kind="FileQuestion" />
-                        </Viewbox>
-                        <TextBlock Margin="8,0,0,0" Text="Delete question info" FontSize="15" />
-                    </StackPanel>
-                </TreeViewItem.Header>
-            </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="16" Height="16">
+                                <md:PackIcon Kind="FileQuestion" />
+                            </Viewbox>
+                            <TextBlock Margin="8,0,0,0" Text="Delete question info" FontSize="15" />
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
 
-            <TreeViewItem>
-                <TreeViewItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="16" Height="16">
-                           <md:PackIcon Kind="AccountOff" />
-                        </Viewbox>
-                        <TextBlock Margin="8,0,0,0" Text="Delete group info" FontSize="15" />
-                    </StackPanel>
-                </TreeViewItem.Header>
-            </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="16" Height="16">
+                                <md:PackIcon Kind="AccountOff" />
+                            </Viewbox>
+                            <TextBlock Margin="8,0,0,0" Text="Delete group info" FontSize="15" />
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
 
-            <TreeViewItem  Foreground="#F26F6F">
-                <TreeViewItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="16" Height="16">
-                        <md:PackIcon Kind="Delete" />
-                        </Viewbox>
-                        <TextBlock Margin="8,0,0,0" Text="Delete all cashe" FontSize="15" />
-                    </StackPanel>
-                </TreeViewItem.Header>
-            </TreeViewItem>
+                <TreeViewItem  Foreground="#F26F6F">
+                    <TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="16" Height="16">
+                                <md:PackIcon Kind="Delete" />
+                            </Viewbox>
+                            <TextBlock Margin="8,0,0,0" Text="Delete all cashe" FontSize="15" />
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
             </TreeViewItem>
         </TreeView>
+
         <TextBlock Text="Players" FontSize="26" FontFamily="Gadugi" Foreground="#707070" Margin="10,7,0,0"  />
+
         <ItemsControl ItemsSource="{Binding Players}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Margin="5,20,0,0">
-                        
+
                         <!--Player tile-->
                         <Border Padding="0,3" Width="{Binding Path=DataContext.PlayersPresentationData.PlayerTileWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" HorizontalAlignment="Left" CornerRadius="20">
                             <Border.Effect>
@@ -458,10 +471,14 @@
                                      FontFamily="Bebas Neue" Foreground="White" FontSize="25pt"
                                      IsEnabled="{Binding Path=DataContext.InteractionsVM.OpenSettingsAnimationTrigger, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" IsHitTestVisible="True" AllowDrop="False" />
                         </Border>
+
+                        <Rectangle Stroke="Gray" Width="30" Height="30"
+                                   RadiusX="4" RadiusY="4" StrokeThickness="3"
+                                   Fill="{Binding PlayerColor, Converter={StaticResource ColorToBrushConverter}}"
+                                   ap:ColorChangingSupportProperties.ColorToChange="{Binding PlayerColor, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ColorToBrushConverter}}"/>
                     </DockPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <local:ColorPicker />
     </StackPanel>
 </UserControl>

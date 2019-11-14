@@ -1,17 +1,10 @@
 ﻿using Quiz.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using Prism.Mvvm;
-using Prism.Commands;
-using System.Windows;
-using System.Windows.Input;
-using Quiz.Supports.Extensions;
-using Quiz.Supports.Worker;
+using Quiz.Support.Extensions;
+using Quiz.Worker;
 
 namespace Quiz.ViewModel
 {
@@ -68,7 +61,6 @@ namespace Quiz.ViewModel
             } else {
                 SelectedPlayer.SetPlayerPoints(newPoints);
             }
-            
         }
 
         private void Player_OnPlayerSelected(PlayerDataVM obj)
@@ -78,6 +70,7 @@ namespace Quiz.ViewModel
 
             ChangePointsVM.ShowView();
             //PlayersPresentationData.PlayersVisibility = false;
+            InteractionsVM.OpenColorPickerAnimationTrigger = true;
         }
     }   
 }

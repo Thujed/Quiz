@@ -3,9 +3,6 @@ using System;
 using System.Windows.Media;
 using Prism.Mvvm;
 using Prism.Commands;
-using System.Windows;
-using Quiz.Supports.PropertyAnimationHandlers;
-using Quiz.Supports.Extensions;
 
 namespace Quiz.ViewModel
 {
@@ -33,8 +30,14 @@ namespace Quiz.ViewModel
                 _player.PlayerName = value;
             }
         }
+        
+        public Color PlayerColor {
+            get => _player.PlayerColor;
+            set {
+                _player.PlayerColor = value;
+            }
+        }
         public double PlayerPoints => _player.PlayerPoints;
-        public Color PlayerColor => _player.PlayerColor;
         public DelegateCommand OnPlayerTileClick { get; }
 
         public void SetPlayerPoints(double newPointsValue) {

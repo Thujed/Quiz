@@ -68,9 +68,11 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.7.2.0.1367\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -99,30 +101,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuizDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Supports\Converters\BooleanInverter.cs" />
-    <Compile Include="Supports\Converters\BrushToHexConverter.cs" />
-    <Compile Include="Supports\Converters\ColorToBrushConverter.cs" />
-    <Compile Include="Supports\Converters\HueConverter.cs" />
-    <Compile Include="Supports\Converters\IntegerToStarGridLengthConverter.cs" />
-    <Compile Include="Supports\Converters\MultiBindingToArrayConverter.cs" />
-    <Compile Include="Supports\Converters\PlayerPointsInverter.cs" />
-    <Compile Include="Supports\Converters\ProportionalPixelsConverter.cs" />
-    <Compile Include="Supports\Converters\RgbToHsl.cs" />
-    <Compile Include="Supports\Converters\ColorDarker.cs" />
-    <Compile Include="Supports\CustomAnimations\GridAnimation.cs" />
-    <Compile Include="Supports\Extension.cs" />
-    <Compile Include="Supports\Extensions\OtherExtensions.cs" />
-    <Compile Include="Supports\Extensions\ReflectionHelper.cs" />
-    <Compile Include="Supports\Extensions\UIExtensions.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\TriggerAnimationHandlers\BaseTriggerAnimationWithProperty.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\TriggerAnimationHandlers\BaseAnimationTriggerAttachedProperty.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\BasePropertyAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\ValueHandlers\BaseValueChangingAnimationAttachProperty.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\TriggerAnimationHandlers\FadeInOutAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\GridPropertyAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\TriggerAnimationHandlers\BaseSlidingShowingAnimation.cs" />
-    <Compile Include="Supports\PropertyAnimationHandlers\ValueHandlers\NumberChangingAnimation.cs" />
-    <Compile Include="Supports\Worker\DBWorker.cs" />
+    <Compile Include="Support\AttachedProperties\ColorChangingSupportProperties.cs" />
+    <Compile Include="Support\Converters\BooleanInverter.cs" />
+    <Compile Include="Support\Converters\BrushToHexConverter.cs" />
+    <Compile Include="Support\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Support\Converters\HueConverter.cs" />
+    <Compile Include="Support\Converters\IntegerToStarGridLengthConverter.cs" />
+    <Compile Include="Support\Converters\MultiBindingToArrayConverter.cs" />
+    <Compile Include="Support\Converters\PlayerPointsInverter.cs" />
+    <Compile Include="Support\Converters\ProportionalPixelsConverter.cs" />
+    <Compile Include="Support\ColorSupport\RgbToHsl.cs" />
+    <Compile Include="Support\Converters\ColorDarker.cs" />
+    <Compile Include="Support\CustomAnimations\GridAnimation.cs" />
+    <Compile Include="Support\Extensions\OtherExtensions.cs" />
+    <Compile Include="Support\Extensions\ReflectionHelper.cs" />
+    <Compile Include="Support\Extensions\SizeExtensions.cs" />
+    <Compile Include="Support\Extensions\UIExtensions.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\TriggerAnimationAttachedProperties\BaseTriggerAnimationWithProperty.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\TriggerAnimationAttachedProperties\BaseAnimationTriggerAttachedProperty.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\BasePropertyAnimation.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\ValueAnimationAttachedProperties\BaseValueChangingAnimationAttachProperty.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\TriggerAnimationAttachedProperties\FadeInOutAnimation.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\GridPropertyAnimation.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\TriggerAnimationAttachedProperties\BaseSlidingShowingAnimation.cs" />
+    <Compile Include="Support\AttachedProperties\AnimationAttachedProperties\ValueAnimationAttachedProperties\NumberChangingAnimation.cs" />
+    <Compile Include="Worker\DBWorker.cs" />
     <Compile Include="ViewModel\ChangeGroupPointsVM.cs" />
     <Compile Include="ViewModel\GeneralPlayerDataVM.cs" />
     <Compile Include="ViewModel\MainViewInteractionsVM.cs" />

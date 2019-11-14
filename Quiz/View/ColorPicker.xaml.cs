@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace Quiz.View
 {
-    public partial class ColorPicker : UserControl
+    public partial class ColorPicker : UserControl, INotifyPropertyChanged
     {
         #region プロパティ
 
@@ -41,7 +41,9 @@ namespace Quiz.View
         /// 出力ブラシプロパティ
         /// </summary>
         public static readonly DependencyProperty AfterBrushProperty = 
-            DependencyProperty.Register(nameof(AfterBrush), typeof(SolidColorBrush), typeof(ColorPicker), new PropertyMetadata(Brushes.White));
+            DependencyProperty.Register(nameof(AfterBrush), typeof(SolidColorBrush), typeof(ColorPicker), new PropertyMetadata(Brushes.White, (obj, e) => {
+                ColorPicker.OnPropertyChanged(obj, e.Property.Name);
+            }));
 
         /// <summary>
         /// 色相プロパティ
@@ -211,11 +213,27 @@ namespace Quiz.View
             set => SetValue(BlueProperty, value);
         }
 
-        #endregion
+        #endregion  
 
         private bool IsMouseDown = false;
         private bool IsCalcHSV = false;
         private bool IsCalcRGB = false;
+
+        /// <summary>
+        /// Object, which has a color property to change with the color picker
+        /// </summary>
+        public DependencyObject TargetObject { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public static void OnPropertyChanged(DependencyObject d, string propertyName)
+        {
+            if (!(d is ColorPicker instance))
+                return;
+
+            instance.PropertyChanged?.Invoke(instance.TargetObject, new PropertyChangedEventArgs(propertyName));
+        }
+
+
 
         // コンストラクタ
         public ColorPicker()
@@ -343,6 +361,11 @@ namespace Quiz.View
                 else if (num < 0) (sender as TextBox).Text = "0";
             }
             else (sender as TextBox).Text = "0";
+        }
+
+        private void BeforeBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            AfterBrush = BeforeBrush;
         }
 
         #endregion

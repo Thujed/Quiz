@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:c="clr-namespace:Quiz.Supports.Converters"
+             xmlns:c="clr-namespace:Quiz.Support.Converters"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300"
              d:DesignWidth="430"
@@ -108,7 +109,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Border Background="#FFD5D5D5" CornerRadius="5" Padding="10,10,0,10">
+    <Border Background="#FFD5D5D5" CornerRadius="8" Padding="10,10,0,10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -170,7 +171,7 @@
             <Grid Grid.Column="2" Margin="5,0,10,0">
                 <!-- Color and HSV -->
                 <StackPanel Grid.Column="0" Orientation="Vertical">
-                    <Grid SnapsToDevicePixels="True" Height="40">
+                    <Grid Name="BeforeBlock" SnapsToDevicePixels="True" Height="40" MouseUp="BeforeBlock_MouseUp">
                             <Rectangle Fill="{StaticResource TransparentBrush}"/>
                             <Rectangle Fill="{Binding BeforeBrush}"/>
                     </Grid>
